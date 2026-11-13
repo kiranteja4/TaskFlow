@@ -19,13 +19,13 @@ export default function Home() {
   const [title, setTitle] = useState("");
   const [connected, setConnected] = useState(false);
   const [filter, setFilter] = useState<Filter>("all");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(Boolean(API_URL));
+  const [error, setError] = useState(
+    API_URL ? "" : "API URL is not configured.",
+  );
 
   useEffect(() => {
     if (!API_URL) {
-      setError("API URL is not configured.");
-      setLoading(false);
       return;
     }
 
